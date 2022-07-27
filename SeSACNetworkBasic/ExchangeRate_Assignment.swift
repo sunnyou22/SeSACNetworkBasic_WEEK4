@@ -12,6 +12,7 @@ import Foundation
  2. 연산할 환율
  */
 
+// 의미단위가 이상하다...
 struct ExchangeRate {
     
     var currencyRate: Double {
@@ -24,24 +25,26 @@ struct ExchangeRate {
     }
     
     var USD: Double {
-        get {
-            return 1
+        willSet {
+            print("USD willSet - 환전금액: USD: \(newValue / currencyRate)로 환전될 예정")
+        }
+        didSet {
+            print("USD didSet - \(USD) -> \(USD / currencyRate) 환전되었음")
         }
     }
     
-    var KRW: Double = 500000 {
-        willSet {
-            print("USD willSet - 환전금액: USD:\(newValue / currencyRate)로 환전될 예정")
+    var KRW: Double {
+        get {
+            currencyRate / USD
         }
-        didSet {
-            print("USD didSet - \(KRW) -> \(oldValue / currencyRate)환전되었음")
+        set {
+            USD = newValue
         }
     }
 }
 
-func doExchgeRate() {
-var rate = ExchangeRate(currencyRate: 1100)
+var rate = ExchangeRate(currencyRate: 1100, USD: 1)
+
 rate.KRW = 500000
 rate.currencyRate = 1350
 rate.KRW = 500000
-}
