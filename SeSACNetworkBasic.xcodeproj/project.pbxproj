@@ -13,6 +13,10 @@
 		903945A22890DD7A0013BDC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 903945A02890DD7A0013BDC7 /* Main.storyboard */; };
 		903945A42890DD7B0013BDC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 903945A32890DD7B0013BDC7 /* Assets.xcassets */; };
 		903945A72890DD7B0013BDC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 903945A52890DD7B0013BDC7 /* LaunchScreen.storyboard */; };
+		903945AF2890E1FA0013BDC7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903945AE2890E1FA0013BDC7 /* SearchViewController.swift */; };
+		903945B42890E4CF0013BDC7 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903945B22890E4CF0013BDC7 /* ListTableViewCell.swift */; };
+		903945B52890E4CF0013BDC7 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 903945B32890E4CF0013BDC7 /* ListTableViewCell.xib */; };
+		903945B7289107760013BDC7 /* ExchangeRate_Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903945B6289107760013BDC7 /* ExchangeRate_Assignment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		903945A32890DD7B0013BDC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		903945A62890DD7B0013BDC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		903945A82890DD7B0013BDC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		903945AE2890E1FA0013BDC7 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		903945B22890E4CF0013BDC7 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		903945B32890E4CF0013BDC7 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		903945B6289107760013BDC7 /* ExchangeRate_Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate_Assignment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +68,12 @@
 				9039459C2890DD7A0013BDC7 /* SceneDelegate.swift */,
 				9039459E2890DD7A0013BDC7 /* ViewController.swift */,
 				903945A02890DD7A0013BDC7 /* Main.storyboard */,
+				903945AE2890E1FA0013BDC7 /* SearchViewController.swift */,
+				903945B6289107760013BDC7 /* ExchangeRate_Assignment.swift */,
 				903945A32890DD7B0013BDC7 /* Assets.xcassets */,
 				903945A52890DD7B0013BDC7 /* LaunchScreen.storyboard */,
+				903945B22890E4CF0013BDC7 /* ListTableViewCell.swift */,
+				903945B32890E4CF0013BDC7 /* ListTableViewCell.xib */,
 				903945A82890DD7B0013BDC7 /* Info.plist */,
 			);
 			path = SeSACNetworkBasic;
@@ -126,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				903945A72890DD7B0013BDC7 /* LaunchScreen.storyboard in Resources */,
+				903945B52890E4CF0013BDC7 /* ListTableViewCell.xib in Resources */,
 				903945A42890DD7B0013BDC7 /* Assets.xcassets in Resources */,
 				903945A22890DD7A0013BDC7 /* Main.storyboard in Resources */,
 			);
@@ -139,8 +152,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9039459F2890DD7A0013BDC7 /* ViewController.swift in Sources */,
+				903945B7289107760013BDC7 /* ExchangeRate_Assignment.swift in Sources */,
 				9039459B2890DD7A0013BDC7 /* AppDelegate.swift in Sources */,
+				903945AF2890E1FA0013BDC7 /* SearchViewController.swift in Sources */,
 				9039459D2890DD7A0013BDC7 /* SceneDelegate.swift in Sources */,
+				903945B42890E4CF0013BDC7 /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +320,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -332,7 +348,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
