@@ -20,16 +20,24 @@ extension UIViewController {
 }
 
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: UIViewController, ViewPresentableProtocol, UITableViewDelegate, UITableViewDataSource {
+    func configureLabel() {
+        
+    }
+    
+    var navigationTitleString: String = ""
+    
+    var backgroundColor: UIColor = .blue
+    
     @IBOutlet weak var searchTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-/*
- swift protocol -> 왼팔과 오른팔이 속하는 곳
- - Delegate
- - Datasource
- */
+        /*
+         swift protocol -> 왼팔과 오른팔이 속하는 곳
+         - Delegate
+         - Datasource
+         */
         
         //연결고리 작업: 테이블뷰가 해야할역할을 뷰 컨트롤러에게 위임하는 것 이게 없으면 테이블뷰 따로 뷰컨따로라서 연결되지 않음 : 딜리케이트 패턴
         searchTableView.delegate = self
@@ -38,6 +46,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //XIB: xml Interface Builder 옛날에는 nib이라는 이름을 사용했었음
         searchTableView.register(UINib(nibName: ListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ListTableViewCell.identifier)
     }
+    
+    func configureView() {
+        searchTableView.backgroundColor = .clear
+        searchTableView.separatorColor = .clear
+        searchTableView.rowHeight = 60
+}
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
