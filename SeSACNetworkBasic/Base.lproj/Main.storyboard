@@ -178,17 +178,28 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5W-bb-JFG">
+                                <rect key="frame" x="186" y="438" width="42" height="86"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DCS-RE-NFw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="l5W-bb-JFG" firstAttribute="centerX" secondItem="C29-2v-pqY" secondAttribute="centerX" id="Ljg-Hb-aIb"/>
+                            <constraint firstItem="l5W-bb-JFG" firstAttribute="centerY" secondItem="C29-2v-pqY" secondAttribute="centerY" id="rE4-TR-5WE"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="testLabel" destination="l5W-bb-JFG" id="VMW-2v-NPR"/>
                         <outlet property="testTextView" destination="yBu-Le-sTg" id="ZLl-1U-Wwx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2M3-9Z-iAj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1817" y="299"/>
+            <point key="canvasLocation" x="1815.9420289855075" y="298.66071428571428"/>
         </scene>
         <!--Lotto View Controller-->
         <scene sceneID="eF9-zM-GYz">
