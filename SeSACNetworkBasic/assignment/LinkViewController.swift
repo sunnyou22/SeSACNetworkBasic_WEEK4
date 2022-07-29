@@ -12,7 +12,7 @@ class LinkViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var testTextView: UITextView! {
         didSet {
             testTextView.delegate = self
-            testTextView.text = "가랏 https://g-y-e-o-m.tistory.com/158"
+            testTextView.text = "참고블로그 https://g-y-e-o-m.tistory.com/158"
             testTextView.isSelectable = true
             testTextView.isEditable = false
             testTextView.dataDetectorTypes = .link
@@ -25,6 +25,7 @@ class LinkViewController: UIViewController, UITextViewDelegate {
         testLabel.attributedText = label.attributedText // 이걸 필수적으로 넣어줘야 반영
     }
  
+    //MARK: dataDetectirTypes
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         let safari: SFSafariViewController = SFSafariViewController(url: URL)
         self.present(safari, animated: true) {
@@ -36,6 +37,7 @@ class LinkViewController: UIViewController, UITextViewDelegate {
     }
 }
 
+//MARK: NSTextAttachment
 let label: UILabel = {
     let label = UILabel()
     let attributedString = NSMutableAttributedString(string: "첫번째 문장")
