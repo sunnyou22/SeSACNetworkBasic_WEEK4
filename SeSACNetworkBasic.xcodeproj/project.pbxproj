@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9031B1762893F13300DF0355 /* LinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9031B1752893F13300DF0355 /* LinkViewController.swift */; };
 		9039459B2890DD7A0013BDC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9039459A2890DD7A0013BDC7 /* AppDelegate.swift */; };
 		9039459D2890DD7A0013BDC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9039459C2890DD7A0013BDC7 /* SceneDelegate.swift */; };
 		9039459F2890DD7A0013BDC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9039459E2890DD7A0013BDC7 /* ViewController.swift */; };
@@ -22,9 +23,14 @@
 		903945BE289230540013BDC7 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903945BD289230540013BDC7 /* TranslateViewController.swift */; };
 		903945C228923A960013BDC7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903945C128923A960013BDC7 /* WebViewController.swift */; };
 		903945C428926EB90013BDC7 /* AssignmentWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903945C328926EB90013BDC7 /* AssignmentWebViewController.swift */; };
+		9066FD5F28935D6700E5C50B /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9066FD5E28935D6700E5C50B /* LocationViewController.swift */; };
+		9066FD64289384DB00E5C50B /* SCDream1.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9066FD61289384DB00E5C50B /* SCDream1.otf */; };
+		9066FD65289384DB00E5C50B /* SCDream2.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9066FD62289384DB00E5C50B /* SCDream2.otf */; };
+		9066FD66289384DB00E5C50B /* SCDream3.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9066FD63289384DB00E5C50B /* SCDream3.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9031B1752893F13300DF0355 /* LinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkViewController.swift; sourceTree = "<group>"; };
 		903945972890DD7A0013BDC7 /* SeSACNetworkBasic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACNetworkBasic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9039459A2890DD7A0013BDC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9039459C2890DD7A0013BDC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +48,10 @@
 		903945BD289230540013BDC7 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		903945C128923A960013BDC7 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		903945C328926EB90013BDC7 /* AssignmentWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentWebViewController.swift; sourceTree = "<group>"; };
+		9066FD5E28935D6700E5C50B /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		9066FD61289384DB00E5C50B /* SCDream1.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream1.otf; sourceTree = "<group>"; };
+		9066FD62289384DB00E5C50B /* SCDream2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream2.otf; sourceTree = "<group>"; };
+		9066FD63289384DB00E5C50B /* SCDream3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream3.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,11 +85,16 @@
 			isa = PBXGroup;
 			children = (
 				9039459A2890DD7A0013BDC7 /* AppDelegate.swift */,
+				9066FD61289384DB00E5C50B /* SCDream1.otf */,
+				9066FD62289384DB00E5C50B /* SCDream2.otf */,
+				9066FD63289384DB00E5C50B /* SCDream3.otf */,
+				9066FD60289383F000E5C50B /* Resource */,
 				9039459C2890DD7A0013BDC7 /* SceneDelegate.swift */,
 				903945A02890DD7A0013BDC7 /* Main.storyboard */,
 				903945B828920CA00013BDC7 /* Protocol */,
 				9039459E2890DD7A0013BDC7 /* ViewController.swift */,
 				903945C128923A960013BDC7 /* WebViewController.swift */,
+				9066FD5E28935D6700E5C50B /* LocationViewController.swift */,
 				903945BD289230540013BDC7 /* TranslateViewController.swift */,
 				903945BB289223750013BDC7 /* LottoViewController.swift */,
 				903945AE2890E1FA0013BDC7 /* SearchViewController.swift */,
@@ -105,6 +120,7 @@
 			children = (
 				903945B6289107760013BDC7 /* ExchangeRate_Assignment.swift */,
 				903945C328926EB90013BDC7 /* AssignmentWebViewController.swift */,
+				9031B1752893F13300DF0355 /* LinkViewController.swift */,
 			);
 			path = assignment;
 			sourceTree = "<group>";
@@ -116,6 +132,13 @@
 				903945B22890E4CF0013BDC7 /* ListTableViewCell.swift */,
 			);
 			path = CellXib;
+			sourceTree = "<group>";
+		};
+		9066FD60289383F000E5C50B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +199,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9066FD66289384DB00E5C50B /* SCDream3.otf in Resources */,
+				9066FD65289384DB00E5C50B /* SCDream2.otf in Resources */,
+				9066FD64289384DB00E5C50B /* SCDream1.otf in Resources */,
 				903945A72890DD7B0013BDC7 /* LaunchScreen.storyboard in Resources */,
 				903945B52890E4CF0013BDC7 /* ListTableViewCell.xib in Resources */,
 				903945A42890DD7B0013BDC7 /* Assets.xcassets in Resources */,
@@ -190,9 +216,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9031B1762893F13300DF0355 /* LinkViewController.swift in Sources */,
 				903945BA28920CDC0013BDC7 /* ViewpresentableProtocol.swift in Sources */,
 				9039459F2890DD7A0013BDC7 /* ViewController.swift in Sources */,
 				903945B7289107760013BDC7 /* ExchangeRate_Assignment.swift in Sources */,
+				9066FD5F28935D6700E5C50B /* LocationViewController.swift in Sources */,
 				903945C228923A960013BDC7 /* WebViewController.swift in Sources */,
 				9039459B2890DD7A0013BDC7 /* AppDelegate.swift in Sources */,
 				903945AF2890E1FA0013BDC7 /* SearchViewController.swift in Sources */,

@@ -21,15 +21,25 @@ class LottoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // 텍스트필트를 클릭할 때 키보드가 아니라 키보드자리에 뷰를 심어놓은 것
-        // 지금 텍스트필드로 구현을 했기 때문에 텍스트필드의 값이 편하면 키보드가 올라옴
+        // 지금 텍스트필드로 구현을 했기 때문에 텍스트필드의 값이 변하면 키보드가 올라옴
         // 그럼 키보드가 데이터피커를 가려버리기 때문에 그걸 방지하기 위해서 뷰를 심음
         // 그 뷰 자리에 픽커뷰를 넣어뒀지만 2개가 지금 심어져있음
         // InputView는 텍스트 필드와 텍스트 뷰에서만 거의 사용하는 기능임 대신 키보드는 못 씀
         numberTextField.inputView = lottoPickerView
+        numberTextField.addTarget(self, action: #selector(keyboardDown), for: .touchUpOutside)
+        // 액션이 호출이 안됨.....잘 쓰지 않음
         
         lottoPickerView.delegate = self
         lottoPickerView.dataSource = self
+        numberTextField.delegate = self
     }
+    
+    @objc
+    func keyboardDown() {
+        print("키보드 다운")
+        numberTextField.resignFirstResponder()
+    }
+    
 }
 
 //MARK: 채택할 프토토콜을 따로 빼줌
@@ -47,13 +57,38 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         return numberlist.count
     }
     
+    // 데이터피커를 선택하면? 편집이 끝난다
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         numberTextField.text = "\(numberlist[row])회차" // 선택이 됐을 때 어떻게 텍스트필트에 어떻게 보여질 건지
+        //view.endEditing(true)
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+//          // 1초 후 실행될 부분
+//            self.numberTextField.resignFirstResponder()
+//        }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return "\(numberlist[row])회차" // 타이틀 행에 대한 타이틀이 어떻게 보여지는지
         
     }
-
 }
+    extension LottoViewController: UITextFieldDelegate {
+        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+            numberTextField.isUserInteractionEnabled = false
+            return true
+        }
+        
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            numberTextField.isUserInteractionEnabled = true
+        }
+        
+        
+//        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//
+//            //MARK: 키보드 내려가는 시간 딜레이 ->
+//
+//            return true
+//        }
+    }
+

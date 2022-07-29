@@ -8,8 +8,10 @@
 import UIKit
 
 class TranslateViewController: UIViewController {
+   
     let textViewPlaceholderText = "번역하고 싶은 문장을 작성해보세요."
     
+    // 이렇게되면 화면에 아무것도 안뜸
     @IBOutlet weak var userInputTextView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +23,17 @@ class TranslateViewController: UIViewController {
         userInputTextView.text = textViewPlaceholderText
         userInputTextView.textColor = .lightGray
         
-//        userInputTextView.resignFirstResponder() // 우선권을 버린다
+        userInputTextView.resignFirstResponder() // 우선권을 버린다
 //        userInputTextView.becomeFirstResponder() // 우선권을 가진다
+        
+        userInputTextView.font = UIFont(name: "S-CoreDream-3Light", size: 17)
+        
+    }
+    @IBAction func tap(_ sender: UITapGestureRecognizer) { // print 로 확인하기, -> 리사인
+        view.endEditing(true)
+        userInputTextView.resignFirstResponder()
     }
 }
-
-
 // 알려줄겡
 extension TranslateViewController: UITextViewDelegate {
     
@@ -56,6 +63,10 @@ extension TranslateViewController: UITextViewDelegate {
             textView.text = textViewPlaceholderText
             textView.textColor = .lightGray
         }
+        view.endEditing(true)
+        userInputTextView.resignFirstResponder()
     }
+    
+    
 }
 

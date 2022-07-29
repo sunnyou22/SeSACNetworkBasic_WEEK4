@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4dF-3j-T2G">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mdp-An-OPn">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -128,6 +128,68 @@
             </objects>
             <point key="canvasLocation" x="-168" y="220"/>
         </scene>
+        <!--Location View Controller-->
+        <scene sceneID="duX-N3-MzG">
+            <objects>
+                <viewController id="1HU-k1-7mU" customClass="LocationViewController" customModule="SeSACNetworkBasic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="60z-li-of8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VD-xP-3cN">
+                                <rect key="frame" x="20" y="64" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="19j-gd-tPC"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Local Notification"/>
+                                <connections>
+                                    <action selector="notificationButtonClicked:" destination="1HU-k1-7mU" eventType="touchUpInside" id="SLE-wx-Y0Z"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="k69-j1-7uJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="k69-j1-7uJ" firstAttribute="trailing" secondItem="4VD-xP-3cN" secondAttribute="trailing" constant="20" id="6tj-5A-bcI"/>
+                            <constraint firstItem="4VD-xP-3cN" firstAttribute="top" secondItem="k69-j1-7uJ" secondAttribute="top" constant="20" id="KbM-Ce-ySu"/>
+                            <constraint firstItem="4VD-xP-3cN" firstAttribute="leading" secondItem="k69-j1-7uJ" secondAttribute="leading" constant="20" id="xm0-pY-aUf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n2b-hS-pgR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="628" y="236"/>
+        </scene>
+        <!--Link View Controller-->
+        <scene sceneID="CUr-pC-yeX">
+            <objects>
+                <viewController id="Mdp-An-OPn" customClass="LinkViewController" customModule="SeSACNetworkBasic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C29-2v-pqY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yBu-Le-sTg">
+                                <rect key="frame" x="87" y="314" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DCS-RE-NFw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="testTextView" destination="yBu-Le-sTg" id="ZLl-1U-Wwx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2M3-9Z-iAj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1817" y="299"/>
+        </scene>
         <!--Lotto View Controller-->
         <scene sceneID="eF9-zM-GYz">
             <objects>
@@ -191,9 +253,17 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wya-Cg-ghn">
+                                <rect key="frame" x="159" y="747" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.84258943799999997" green="0.65517644320000001" blue="0.68564432340000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VX5-VT-a2s"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="VX5-VT-a2s" firstAttribute="trailing" secondItem="Pl8-DZ-CE4" secondAttribute="trailing" constant="20" id="10h-u3-5JI"/>
                             <constraint firstItem="JjE-MF-OEr" firstAttribute="centerX" secondItem="Sg6-YY-pw2" secondAttribute="centerX" id="5k8-iY-wVl"/>
@@ -201,12 +271,16 @@
                             <constraint firstItem="Pl8-DZ-CE4" firstAttribute="top" secondItem="VX5-VT-a2s" secondAttribute="top" constant="20" id="d2Q-tS-l3V"/>
                             <constraint firstItem="JjE-MF-OEr" firstAttribute="centerY" secondItem="Sg6-YY-pw2" secondAttribute="centerY" id="tNn-xs-mZe"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="DsM-bQ-cBI" appends="YES" id="P3m-8p-hSF"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="numberTextField" destination="Pl8-DZ-CE4" id="I11-dx-BQH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYU-ie-DGI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DsM-bQ-cBI"/>
             </objects>
             <point key="canvasLocation" x="665" y="-533"/>
         </scene>
@@ -237,9 +311,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cs8-6u-xyS">
+                                <rect key="frame" x="199" y="322" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qfd-3o-cFM">
+                                <rect key="frame" x="159" y="566" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="db1-qd-1hd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="rEk-sl-95D" firstAttribute="top" secondItem="db1-qd-1hd" secondAttribute="top" constant="50" id="7uP-fn-Gu8"/>
                             <constraint firstItem="rEk-sl-95D" firstAttribute="leading" secondItem="db1-qd-1hd" secondAttribute="leading" constant="20" id="ggQ-Ps-2fU"/>
@@ -251,8 +338,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tUH-6i-DGg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="7Jq-Cc-BqN">
+                    <connections>
+                        <action selector="tap:" destination="Q85-P9-4rI" id="7dE-eE-OGP"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1490" y="-506"/>
+            <point key="canvasLocation" x="1417" y="-563"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="FQA-t5-RV4">

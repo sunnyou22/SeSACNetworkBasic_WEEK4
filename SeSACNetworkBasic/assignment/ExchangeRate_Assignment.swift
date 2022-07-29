@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 /*
  현재 한국돈 -> 미국달러
  1. 두개의 프로퍼티 한국돈 미국돈
@@ -26,25 +27,33 @@ struct ExchangeRate {
     
     var USD: Double {
         willSet {
-            print("USD willSet - 환전금액: USD: \(newValue / currencyRate)로 환전될 예정")
+            print("USD willSet - 환전금액: USD: \(newValue)로 환전될 예정")
         }
         didSet {
-            print("USD didSet - \(USD) -> \(USD / currencyRate) 환전되었음")
+            print("USD didSet - \(KRW) -> \(USD) 환전되었음")
         }
     }
     
     var KRW: Double {
         get {
-            currencyRate / USD
+            USD * currencyRate
         }
         set {
-            USD = newValue
+            USD = newValue / currencyRate
         }
     }
 }
 
-//var rate = ExchangeRate(currencyRate: 1100, USD: 1)
-//
+var rate = ExchangeRate(currencyRate: 1000, USD: 100)
+
+// get테스트해보기
 //rate.KRW = 500000
 //rate.currencyRate = 1350
-//rate.KRW = 500000
+//rate.KRW
+
+//MARK: 07.29
+
+/*
+ dataDtectorTypes = .link -> 링크 활성화
+ isEditable -> false -> text에 링크가 있으면 자동으로 링크가 설정됨
+ */

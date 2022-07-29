@@ -11,6 +11,10 @@ import WebKit
 class AssignmentWebViewController: UIViewController {
     var destinationURL = "https://www.daum.net"
     
+    @IBOutlet weak var testTextView: UITextView!
+    
+    
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var toolBar: UIToolbar!
@@ -64,3 +68,4 @@ extension AssignmentWebViewController: UISearchBarDelegate {
         openWebPage(urlstr: searchBar.text!)
     }
 }
+

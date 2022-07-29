@@ -27,6 +27,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
+        
+        //Badge 제거
+        UIApplication.shared.applicationIconBadgeNumber = 0 // 앱을 클릭할 때 뱃지를 사라지게하고 싶으면 만약 willConnect willEnterForground 를 쓰면 앱을 완전이 끄거나 백그라운드로 만들어서 다시 켜야만 호출되니까 뱃지가 안사라질 수도 있음
+        
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
     }
