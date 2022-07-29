@@ -40,7 +40,7 @@ let label: UILabel = {
     let label = UILabel()
     let attributedString = NSMutableAttributedString(string: "첫번째 문장")
     let imageAttachment = NSTextAttachment()
-    imageAttachment.image = UIImage(named: "2-1")
+    imageAttachment.image = UIImage(systemName: "star.fill")
     imageAttachment.bounds = CGRect(x: 0, y: 0, width: 15, height: 15)
     attributedString.append(NSAttributedString(attachment: imageAttachment))
     
