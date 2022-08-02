@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mdp-An-OPn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="se5-ie-ZrO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -41,12 +41,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="FkT-6A-ic5" id="miI-8R-nuH"/>
                         <outlet property="searchTableView" destination="7gW-qe-Zce" id="KCp-GK-jQt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-188" y="-533"/>
+            <point key="canvasLocation" x="-193" y="-533"/>
         </scene>
         <!--Assignment Web View Controller-->
         <scene sceneID="oM3-78-1vz">
@@ -119,7 +120,7 @@
                         <outlet property="closeBtn" destination="BiF-5w-AA3" id="w2y-6D-BVa"/>
                         <outlet property="gofowardBtn" destination="MGd-Wr-Fu3" id="abc-ve-D7e"/>
                         <outlet property="reloadBtn" destination="0uI-rw-lFm" id="CDi-Oz-nbZ"/>
-                        <outlet property="searchBar" destination="sxx-wd-g8J" id="2j5-H0-M4e"/>
+                        <outlet property="searchBar" destination="sxx-wd-g8J" id="yfG-Np-Ev8"/>
                         <outlet property="toolBar" destination="pAo-nJ-089" id="h1j-F3-GfT"/>
                         <outlet property="webView" destination="XSU-cu-Lta" id="Y5M-NP-Hcr"/>
                     </connections>
@@ -264,13 +265,6 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wya-Cg-ghn">
-                                <rect key="frame" x="159" y="747" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.84258943799999997" green="0.65517644320000001" blue="0.68564432340000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VX5-VT-a2s"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -287,7 +281,14 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="bonusNum" destination="Orq-IZ-LYu" id="qN9-qy-wCe"/>
                         <outlet property="numberTextField" destination="Pl8-DZ-CE4" id="I11-dx-BQH"/>
+                        <outletCollection property="lottoNumList" destination="1lv-HH-KJg" collectionClass="NSMutableArray" id="HTR-fu-UQP"/>
+                        <outletCollection property="lottoNumList" destination="XYt-M4-8nP" collectionClass="NSMutableArray" id="egU-Oi-Kjt"/>
+                        <outletCollection property="lottoNumList" destination="uek-qy-Xtb" collectionClass="NSMutableArray" id="daT-4o-Cxj"/>
+                        <outletCollection property="lottoNumList" destination="pne-Tv-TBN" collectionClass="NSMutableArray" id="Vps-Wz-h4c"/>
+                        <outletCollection property="lottoNumList" destination="B9k-PB-bDV" collectionClass="NSMutableArray" id="adX-2f-Cnj"/>
+                        <outletCollection property="lottoNumList" destination="18q-Ut-mZT" collectionClass="NSMutableArray" id="Z3a-lu-n1f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYU-ie-DGI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -313,15 +314,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4i6-Yg-9jr">
-                                <rect key="frame" x="87" y="361" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBrownColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cs8-6u-xyS">
                                 <rect key="frame" x="199" y="322" width="67" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -334,6 +326,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aEh-qr-w2u">
+                                <rect key="frame" x="74" y="430" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="db1-qd-1hd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -349,11 +350,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tUH-6i-DGg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="7Jq-Cc-BqN">
-                    <connections>
-                        <action selector="tap:" destination="Q85-P9-4rI" id="7dE-eE-OGP"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="7Jq-Cc-BqN"/>
             </objects>
             <point key="canvasLocation" x="1417" y="-563"/>
         </scene>
@@ -433,8 +430,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

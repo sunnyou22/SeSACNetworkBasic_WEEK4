@@ -5,18 +5,29 @@
 //  Created by 방선우 on 2022/07/28.
 //
 
+//임포트할 때 애플프레임워크를 알파벳순서로 해주고 다음 한ㄱ칸뛰고 라이브러리 써줌
 import UIKit
+import WebKit
+
+import Alamofire
+import SwiftyJSON
+
 
 class LottoViewController: UIViewController {
     
     @IBOutlet weak var numberTextField: UITextField!
+    @IBOutlet var lottoNumList: [UILabel]!
+    @IBOutlet weak var bonusNum: UILabel!
+    
+    
 //    @IBOutlet weak var lottoPickerView: UIPickerView!
-    var lottoPickerView = UIPickerView() // 아웃렛의 역할을 해줄거임
+    var lottoPickerView = UIPickerView()
+    // 아웃렛의 역할을 해줄거임
     // 코드로 뷰를 짜는 기능이 훨씬 더 많이 남아있음
     // 지금은 키보드 자리에 잘 위치하고 이씀
     
     // 사용자입장에서 1회차부터 보여지면 최근회차를 가기 힘드니까 배열에 담아버림
-    let numberlist: [Int] = Array(1...1025).reversed()
+    let numberlist: [Int] = Array(1...986).reversed()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +37,7 @@ class LottoViewController: UIViewController {
         // 그 뷰 자리에 픽커뷰를 넣어뒀지만 2개가 지금 심어져있음
         // InputView는 텍스트 필드와 텍스트 뷰에서만 거의 사용하는 기능임 대신 키보드는 못 씀
         numberTextField.inputView = lottoPickerView
-        numberTextField.addTarget(self, action: #selector(keyboardDown), for: .touchUpOutside)
+        numberTextField.addTarget(self, action: #selector(keyboardDown), for: .editingDidEndOnExit)
         // 액션이 호출이 안됨.....잘 쓰지 않음
         
         lottoPickerView.delegate = self
@@ -38,6 +49,37 @@ class LottoViewController: UIViewController {
     func keyboardDown() {
         print("키보드 다운")
         numberTextField.resignFirstResponder()
+    }
+    
+    func requestLotto(number: Int) {
+        let url = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=\(number)"
+        
+        //request부터 swiftyJson코드임,  validate() -> 유효성 검증
+        //AF: 200 ~ 299 status code 301
+        //responseJSON 제이슨 형태로 받아오겟다
+        AF.request(url, method: .get).validate(statusCode: 200..<300).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("JSON: \(json)")
+                
+                // 이렇게 받아오지 않으면 화면에 반영되지 않음
+                let bonus = json["bnusNo"].intValue
+                print(bonus)
+                let date = json["drwNoDate"].stringValue
+                print(date)
+                
+                for i in 1...6 {
+                    self.lottoNumList[i - 1].text = "\(json["drwtNo\(i)"].intValue)"
+                }
+                self.bonusNum.text = "\(bonus)"
+       
+                self.numberTextField.text = date
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
 }
@@ -59,12 +101,15 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     // 데이터피커를 선택하면? 편집이 끝난다
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        numberTextField.text = "\(self.requestLotto(number: numberlist[row]))"
+        
         numberTextField.text = "\(numberlist[row])회차" // 선택이 됐을 때 어떻게 텍스트필트에 어떻게 보여질 건지
         //view.endEditing(true)
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-//          // 1초 후 실행될 부분
-//            self.numberTextField.resignFirstResponder()
-//        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+          // 1초 후 실행될 부분
+            self.requestLotto(number: self.numberlist[row])
+            self.numberTextField.resignFirstResponder()
+        }
         
     }
     
