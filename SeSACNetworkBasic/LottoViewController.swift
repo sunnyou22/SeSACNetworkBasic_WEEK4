@@ -18,19 +18,23 @@ class LottoViewController: UIViewController {
     @IBOutlet weak var numberTextField: UITextField!
     @IBOutlet var lottoNumList: [UILabel]!
     @IBOutlet weak var bonusNum: UILabel!
-    
-    
+
 //    @IBOutlet weak var lottoPickerView: UIPickerView!
     var lottoPickerView = UIPickerView()
+
     // 아웃렛의 역할을 해줄거임
     // 코드로 뷰를 짜는 기능이 훨씬 더 많이 남아있음
     // 지금은 키보드 자리에 잘 위치하고 이씀
     
     // 사용자입장에서 1회차부터 보여지면 최근회차를 가기 힘드니까 배열에 담아버림
-    let numberlist: [Int] = Array(1...986).reversed()
+
+    let numberlist: [Int] = Array(1...UserDefaults.standard.integer(forKey: "countDay")).reversed()
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         // 텍스트필트를 클릭할 때 키보드가 아니라 키보드자리에 뷰를 심어놓은 것
         // 지금 텍스트필드로 구현을 했기 때문에 텍스트필드의 값이 변하면 키보드가 올라옴
         // 그럼 키보드가 데이터피커를 가려버리기 때문에 그걸 방지하기 위해서 뷰를 심음
@@ -45,6 +49,41 @@ class LottoViewController: UIViewController {
         numberTextField.delegate = self
     }
     
+   func count() -> Int {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy-MM-dd"
+       var countDay: Int = 0
+        
+       
+       print(plusDay(add: 7))
+       print(formatter.string(from: Date()))
+       
+       print(plusDay(add: 7 * countDay) > formatter.string(from: Date())) // true
+       print(UserDefaults.standard.integer(forKey: "countDay"))
+       while plusDay(add: 7 * UserDefaults.standard.integer(forKey: "countDay")) < formatter.string(from: Date()) {
+            print(countDay)
+           countDay += 1
+           UserDefaults.standard.set(countDay, forKey: "countDay")
+           
+        }
+       
+       print(countDay)
+        return countDay
+    }
+    
+    
+   func plusDay(add: Int) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy-MM-dd"
+        // 클로저를 사용해서 더 간결하게 갈 수 있지 않을까 puls함수를 클로저로 대체..하는...무슨 방법이 있지 ..않을가..
+        let plusday = Calendar.current.date(byAdding: .day, value: add, to: formatter.date(from: "2002-12-07")!)
+        
+        return formatter.string(from: plusday!)
+    }
+
+    
     @objc
     func keyboardDown() {
         print("키보드 다운")
@@ -53,11 +92,11 @@ class LottoViewController: UIViewController {
     
     func requestLotto(number: Int) {
         let url = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=\(number)"
-        
+        print(number)
         //request부터 swiftyJson코드임,  validate() -> 유효성 검증
         //AF: 200 ~ 299 status code 301
         //responseJSON 제이슨 형태로 받아오겟다
-        AF.request(url, method: .get).validate(statusCode: 200..<300).responseJSON { response in
+        AF.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -101,7 +140,7 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     // 데이터피커를 선택하면? 편집이 끝난다
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        numberTextField.text = "\(self.requestLotto(number: numberlist[row]))"
+//        numberTextField.text = "\(self.requestLotto(number: LottoViewController.numberlist[row]))"
         
         numberTextField.text = "\(numberlist[row])회차" // 선택이 됐을 때 어떻게 텍스트필트에 어떻게 보여질 건지
         //view.endEditing(true)
@@ -127,13 +166,20 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         func textFieldDidEndEditing(_ textField: UITextField) {
             numberTextField.isUserInteractionEnabled = true
         }
-        
-        
-//        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//
-//            //MARK: 키보드 내려가는 시간 딜레이 ->
-//
-//            return true
-//        }
     }
-
+//
+//protocol TestPlusDay {
+//    func plusDay(add: Int) -> String
+//}
+//
+//extension TestPlusDay {
+//    func plusDay(add: Int) -> String {
+//        let formatter = DateFormatter()
+//        formatter.locale = Locale(identifier: "ko_KR")
+//        formatter.dateFormat = "yyyy-MM-dd"
+//
+//        let plusday = Calendar.current.date(byAdding: .day, value: add, to: formatter.date(from: "2022-12-07")!)
+//
+//        return formatter.string(from: plusday!)
+//    }
+//}
