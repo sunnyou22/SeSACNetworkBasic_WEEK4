@@ -28,7 +28,8 @@ class LottoViewController: UIViewController {
     
     // 사용자입장에서 1회차부터 보여지면 최근회차를 가기 힘드니까 배열에 담아버림
     var totalCount: Double = 0
-    
+    typealias userDefaultType = ([Int], String) // 로또 번호들을 담을 배열, 날짜
+    var clickedUserDefaultList: [userDefaultType] = [] // 클릭했던 회차정보를 담는 변수
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,11 +69,12 @@ class LottoViewController: UIViewController {
         //request부터 swiftyJson코드임,  validate() -> 유효성 검증
         //AF: 200 ~ 299 status code 301
         //responseJSON 제이슨 형태로 받아오겟다
-        AF.request(url, method: .get).validate().responseJSON { response in
+        AF.request(url, method: .get).validate().responseData { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 print("JSON: \(json)")
+                var lottonumlist: [Int] = []
                 
                 // 이렇게 받아오지 않으면 화면에 반영되지 않음
                 let bonus = json["bnusNo"].intValue
@@ -82,10 +84,15 @@ class LottoViewController: UIViewController {
                 
                 for i in 1...6 {
                     self.lottoNumList[i - 1].text = "\(json["drwtNo\(i)"].intValue)"
+                    lottonumlist.append(json["drwtNo\(i)"].intValue)
                 }
                 self.bonusNum.text = "\(bonus)"
+                lottonumlist.append(bonus)
                 
                 self.numberTextField.text = date
+                let tuple: userDefaultType = (lottonumlist, date)
+//                self.clickedUserDefaultList.append(tuple)
+                UserDefaults.standard.set(tuple, forKey: "\(number)")
                 
             case .failure(let error):
                 print(error)
@@ -105,7 +112,7 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        //        return 10 // 행. 하나의 픽커뷰에 10개의 행이 잇음
+        // return 10 // 행. 하나의 픽커뷰에 10개의 행이 잇음
         // 만약 따로따로 구현?
         return count().count
     }
@@ -113,15 +120,32 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     // 데이터피커를 선택하면? 편집이 끝난다
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //        numberTextField.text = "\(self.requestLotto(number: LottoViewController.numberlist[row]))"
+        var isClicked = false
         
         numberTextField.text = "\(count()[row])회차" // 선택이 됐을 때 어떻게 텍스트필트에 어떻게 보여질 건지
+        isClicked = !isClicked
+        UserDefaults.standard.set(isClicked, forKey: "isClicked")
         //view.endEditing(true)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) { [self] in
             // 1초 후 실행될 부분
-            self.requestLotto(number: self.count()[row])
             self.numberTextField.resignFirstResponder()
+            
+            if UserDefaults.standard.bool(forKey: "isClicked") == true {
+                self.requestLotto(number: self.count()[row])
+                
+            } else if UserDefaults.standard.bool(forKey: "isClicked") == false {
+                let tuple = UserDefaults.standard.object(forKey: "\(self.count()[row])") as! userDefaultType
+                tuple.0.forEach { i in
+                    lottoNumList.append(bonusNum)
+                    print(lottoNumList)
+                    lottoNumList.forEach { label in
+                        label.text = "\(i)"
+                    }
+                }
+                numberTextField.text = tuple.1
+            }
         }
-        
+
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
