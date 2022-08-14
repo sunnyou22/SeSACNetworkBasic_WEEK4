@@ -26,10 +26,13 @@ class LottoViewController: UIViewController {
     // 코드로 뷰를 짜는 기능이 훨씬 더 많이 남아있음
     // 지금은 키보드 자리에 잘 위치하고 이씀
     
+    //MARK: 서버통신을 다른 곳에서 받고 셀 선택시 유저디폴트를 받아오는건?
     // 사용자입장에서 1회차부터 보여지면 최근회차를 가기 힘드니까 배열에 담아버림
     var totalCount: Double = 0
-    typealias userDefaultType = ([Int], String) // 로또 번호들을 담을 배열, 날짜
-    var clickedUserDefaultList: [userDefaultType] = [] // 클릭했던 회차정보를 담는 변수
+//    typealias userDefaultType = ([Int], String) // 로또 번호들을 담을 배열, 날짜
+//    var clickedUserDefaultList: [userDefaultType] = [] // 클릭했던 회차정보를 담는 변수
+    var testLottoNumList: [Int]?
+    var date: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,9 +93,10 @@ class LottoViewController: UIViewController {
                 lottonumlist.append(bonus)
                 
                 self.numberTextField.text = date
-                let tuple: userDefaultType = (lottonumlist, date)
+//                let tuple: userDefaultType = (lottonumlist, date)
 //                self.clickedUserDefaultList.append(tuple)
-                UserDefaults.standard.set(tuple, forKey: "\(number)")
+                UserDefaults.standard.set(lottonumlist, forKey: "\(number)")
+                UserDefaults.standard.set(date, forKey: "\(number)date")
                 
             case .failure(let error):
                 print(error)
@@ -120,29 +124,24 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     // 데이터피커를 선택하면? 편집이 끝난다
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //        numberTextField.text = "\(self.requestLotto(number: LottoViewController.numberlist[row]))"
-        var isClicked = false
-        
+    
         numberTextField.text = "\(count()[row])회차" // 선택이 됐을 때 어떻게 텍스트필트에 어떻게 보여질 건지
-        isClicked = !isClicked
-        UserDefaults.standard.set(isClicked, forKey: "isClicked")
+        
         //view.endEditing(true)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) { [self] in
             // 1초 후 실행될 부분
             self.numberTextField.resignFirstResponder()
             
-            if UserDefaults.standard.bool(forKey: "isClicked") == true {
+            if UserDefaults.standard.array(forKey: "\(self.count()[row])") == nil || UserDefaults.standard.string(forKey: "\(self.count()[row])date") == nil {
                 self.requestLotto(number: self.count()[row])
-                
-            } else if UserDefaults.standard.bool(forKey: "isClicked") == false {
-                let tuple = UserDefaults.standard.object(forKey: "\(self.count()[row])") as! userDefaultType
-                tuple.0.forEach { i in
+            } else {
+                let lottoList = UserDefaults.standard.array(forKey: "\(self.count()[row])") as! Array<Int>
+                lottoList.forEach { i in
+                    print(lottoList)
                     lottoNumList.append(bonusNum)
-                    print(lottoNumList)
-                    lottoNumList.forEach { label in
-                        label.text = "\(i)"
-                    }
+                    lottoNumList[lottoList.firstIndex(of: i)!].text = "\(i)"
                 }
-                numberTextField.text = tuple.1
+                numberTextField.text = UserDefaults.standard.string(forKey: "\(self.count()[row])date")
             }
         }
 
