@@ -10,6 +10,9 @@ import UIKit
 //권한설정은 앱이 켜는 최초한번 만약 거부하면 이후는 개발자가 설정해줘야함
 
 class LocationViewController: UIViewController {
+    @IBOutlet weak var downloadImage: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
+    
     //Notification
     let notificationCenter = UNUserNotificationCenter.current()
     
@@ -30,6 +33,25 @@ class LocationViewController: UIViewController {
         
         
         requesAutorization()
+    }
+    
+    @IBAction func downloadImage(_ sender: UIButton) {
+      //비동기로 만들어주면 좋음
+        let url = "https://apod.nasa.gov/apod/image/2208/M13_final2_sinfirma.jpg"
+        print("1", Thread.isMainThread)
+        
+        // 코드가 순서대로 동작했다가 여기 안에 넣어서 그 순서가 깨짐
+        DispatchQueue.global().async { // 동시 여러 작업 가능하게 해줘
+            print("2", Thread.isMainThread)
+            let data = try! Data(contentsOf: URL(string: url)!)
+            let image = UIImage(data: data)
+            
+            // 그래서 main에서 움직일 수 있게 따로 담아줌
+            DispatchQueue.main.async {
+                print("3", Thread.isMainThread)
+                self.imageView.image = image
+            }
+        }
     }
     
     @IBAction func notificationButtonClicked(_ sender: UIButton) {

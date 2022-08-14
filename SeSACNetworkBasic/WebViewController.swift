@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 class WebViewController: UIViewController {
-
+    
     @IBOutlet weak var webView: WKWebView! // UIKit이 아니니까 임포트를 따로 해줘야함
     @IBOutlet weak var searchBar: UISearchBar!
     // 넣고싶은 URL 설정

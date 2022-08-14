@@ -21,14 +21,13 @@ class LottoViewController: UIViewController {
     
     //    @IBOutlet weak var lottoPickerView: UIPickerView!
     var lottoPickerView = UIPickerView()
-    
+    let formatter = UserDateFormat().setFormatter()
     // 아웃렛의 역할을 해줄거임
     // 코드로 뷰를 짜는 기능이 훨씬 더 많이 남아있음
     // 지금은 키보드 자리에 잘 위치하고 이씀
     
     // 사용자입장에서 1회차부터 보여지면 최근회차를 가기 힘드니까 배열에 담아버림
-    var testCount: Int = 0
-    let numberlist: [Int] = Array(1...UserDefaults.standard.integer(forKey: "countDay")).reversed()
+    var totalCount: Double = 0
     
     
     override func viewDidLoad() {
@@ -43,24 +42,14 @@ class LottoViewController: UIViewController {
         numberTextField.delegate = self
     }
     //MARK: 도전과제 (지난주 데이터를 가져와서,,,표현)
-    func count() -> Int {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy-MM-dd"
-        var countDay: Int = 0
-    
-        while plusDay(add: 7 * self.testCount) < formatter.string(from: Date()) {
-            print(countDay)
-            countDay += 1
-            self.testCount = countDay
-        }
-        return self.testCount
+    func count() -> [Int] {
+        totalCount = floor(Date().timeIntervalSince(formatter.date(from: "2002-12-07")!) / (86400 * 7))
+        print(totalCount)
+        let numberlist: [Int] = Array(1...Int(totalCount)).reversed()
+        return numberlist
     }
     
     func plusDay(add: Int) -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy-MM-dd"
         let plusday = Calendar.current.date(byAdding: .day, value: add, to: formatter.date(from: "2002-12-07")!)
         
         return formatter.string(from: plusday!)
@@ -118,25 +107,25 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         //        return 10 // 행. 하나의 픽커뷰에 10개의 행이 잇음
         // 만약 따로따로 구현?
-        return numberlist.count
+        return count().count
     }
     
     // 데이터피커를 선택하면? 편집이 끝난다
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //        numberTextField.text = "\(self.requestLotto(number: LottoViewController.numberlist[row]))"
         
-        numberTextField.text = "\(numberlist[row])회차" // 선택이 됐을 때 어떻게 텍스트필트에 어떻게 보여질 건지
+        numberTextField.text = "\(count()[row])회차" // 선택이 됐을 때 어떻게 텍스트필트에 어떻게 보여질 건지
         //view.endEditing(true)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
             // 1초 후 실행될 부분
-            self.requestLotto(number: self.numberlist[row])
+            self.requestLotto(number: self.count()[row])
             self.numberTextField.resignFirstResponder()
         }
         
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(numberlist[row])회차" // 타이틀 행에 대한 타이틀이 어떻게 보여지는지
+        return "\(count()[row])회차" // 타이틀 행에 대한 타이틀이 어떻게 보여지는지
         
     }
 }
@@ -166,3 +155,16 @@ extension LottoViewController: UITextFieldDelegate {
 //        return formatter.string(from: plusday!)
 //    }
 //}
+
+struct UserDateFormat {
+    static let formatter = DateFormatter()
+    
+    func setFormatter() -> DateFormatter {
+        UserDateFormat.formatter.locale = Locale(identifier: "ko_KR")
+        UserDateFormat.formatter.dateFormat = "yyyy-MM-dd"
+        
+        return UserDateFormat.formatter
+    }
+}
+
+

@@ -26,8 +26,11 @@ class AssignmentWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         toolBar.barTintColor = .lightGray
-        searchBar.delegate = self // 확장한 기능을 해당서치바에 연결해주는 거임
-        openWebPage(urlstr: destinationURL) // 아래 작업이 끝나면 실질적으로 url 연결
+        
+        searchBar.delegate = self
+        // 확장한 기능을 해당서치바에 연결해주는 거임
+        openWebPage(urlstr: destinationURL)
+        // 아래 작업이 끝나면 실질적으로 url 연결
     }
     
     //MARK: 툴바 아이템마다 기능 넣어주기
@@ -65,7 +68,11 @@ class AssignmentWebViewController: UIViewController {
 //MARK: searchBar에 이런기능을 넣어주세요
 extension AssignmentWebViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        openWebPage(urlstr: searchBar.text!)
+        guard let text = searchBar.text else {
+            print("서치바에 텍스트 없음")
+            return
+        }
+        openWebPage(urlstr: text)
     }
 }
 

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         UNUserNotificationCenter.current().delegate = self // 인스턴스를 만들필요가 없음
         // 해당클래스의 인스턴스를 자신이 가지고있다는 것을 의미함 //  UNUserNotificationCenterDelegate { // 액션담당
-        
+
         return true
     }
     

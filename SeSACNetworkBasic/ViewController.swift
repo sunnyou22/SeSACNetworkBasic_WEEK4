@@ -35,10 +35,12 @@ class ViewController: UIViewController, ViewPresentableProtocol {
         view.backgroundColor = backgroundColor
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+      
+        UserDefaultHelper.shared.nickname = "고래밥"
+        title = UserDefaultHelper.shared.nickname // 네비 닉네임 작성할때 좋음 값을 변경
+        print(UserDefaultHelper.shared.age)
     }
 
 

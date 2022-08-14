@@ -45,28 +45,13 @@ class ImageSearchViewController: UIViewController {
     }
     
     func fetchImage(query: String) {
-        let text = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! // 이걸 해주면 인썸니아처럼 UTF-8로 바꿔쥼, 옵셔널임 그래서 처리해쥬기
-        let url = EndPoint.imageSearchURL + "query=\(text)&display=30&start=\(startPage)" // 값만 맞으면돼서 순서는 상관없음. 30개보여주고 31번부터 30개 보여줌
-        let header: HTTPHeaders = ["X-Naver-Client-Id" : APIKey.NAVERID, "X-Naver-Client-Secret" : APIKey.NAVERSCRETKEY]
-        
-        AF.request(url, method: .get, headers: header).validate(statusCode: 200...500).responseData { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print("JSON: \(json)")
-                
-                self.totalCount = json["total"].intValue
-                
-                for i in json["items"].arrayValue {
-                    self.list.append(i["link"].stringValue)
-                }
-                
-                self.collectionView.reloadData()
-                
-            case .failure(let error):
-                print(error)
-            }
+        ImageSearchAPIManager.shared.fetchImageData(query: query, startPage: startPage) { totalCount, list in
+            self.totalCount = totalCount
+            self.list.append(contentsOf: list)
             
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
